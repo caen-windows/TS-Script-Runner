@@ -11,10 +11,10 @@ This repo contains three different components:
 3. Individual child scripts to be run by `Start-ScriptRunner` are also included. 
 
 ### Start-ScriptRunner.ps1 Arguments
-`-JsonFileName` is the path to the .json file relative to `Start-ScriptRunner.ps1`.
-`-DownloadLocation` is the location the github repo should be downloaded to. It should be an empty directory.
-`-GithubTokenTSVariable` (optional) is the SCCM task sequence variable that the GitHub Token is stored in for connecting to a private repo. If none is defined the download will be attempted as if it is a public repo.
-`-AllowedScriptRunTime` (optional) is the maximum allowed run time, in seconds, of each individual script run by `Start-ScriptRunner.ps1`. A default value is set in `Start-ScriptRunner.ps1` if this argument is not defined.
+* `JsonFileName` is the path to the .json file relative to `Start-ScriptRunner.ps1`.
+* `DownloadLocation` is the location the github repo should be downloaded to. It should be an empty directory.
+* `GithubTokenTSVariable` (optional) is the SCCM task sequence variable that the GitHub Token is stored in for connecting to a private repo. If none is defined the download will be attempted as if it is a public repo.
+* `AllowedScriptRunTime` (optional) is the maximum allowed run time, in seconds, of each individual script run by `Start-ScriptRunner.ps1`. A default value is set in `Start-ScriptRunner.ps1` if this argument is not defined.
 
 ### User Interface
 `Start-ScriptRunner` updates the builtin SCCM progress bar to indicate the child script it is currently running and how many total scripts will be run. Note that each child script is responsible for closing this progress bar if and when it needs to display a message box. `Start-ScriptRunner` re-opens the progress bar after each child script.
