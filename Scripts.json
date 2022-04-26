@@ -1,0 +1,32 @@
+{
+	"jsonversion":		"2022.04.26",
+	"changeLog":	[
+						"2022.04.26 : Changed script names to use approved verbs",
+						"2022.03.31 : Updated for testing in task sequence",
+						"2022.03.29 : Initial version"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-ComputerNameAndProduct.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Set-ReloadMode.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-ProductSummary.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"me-*",
+			"script":	"scripts\\Set-MEUserInputs.ps1",
+			"argumentlist":		""
+		}
+	]
+}
+
+	
