@@ -474,6 +474,10 @@ else { #when in WinPE the get-netadapter function is not available
 
 $lastStep = read-sccm-variable("ErrorStepName")
 $lastStepCode = read-sccm-variable("ErrorStepCode")
+$productversion = "$product $version"
+if (-not $productversion){
+    $productversion = "Failed before it could be determined"
+}
 
 #send slack message
 $SlackProperties = [pscustomobject]@{
