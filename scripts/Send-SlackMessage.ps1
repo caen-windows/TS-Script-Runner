@@ -458,6 +458,9 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
 	$Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
 	$Computer = $Computer -split ' '
 	$Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
+    if (-not($Computer)){
+        $Computer = "Not entered into task sequence or name service."
+    }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
 	$mac = Get-NetAdapter | Where-Object Status -eq "up" | Where-Object Name -NotLike "VMware*" | Select-Object -Expand MacAddress

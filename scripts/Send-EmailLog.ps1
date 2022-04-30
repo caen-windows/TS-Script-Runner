@@ -29,12 +29,15 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
         $Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
         $Computer = $Computer -split ' '
         $Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
+        if (-not($Computer)){
+            $Computer = "Not entered into task sequence or name service."
+        }
     }
 }
 
 $from = "CAEN CLSE Deployment Tracking <CLSE-Deployment-NoReply@umich.edu>"
 $UMODGroup = "CAEN CLSE Deployment Tracking <CAEN-CLSE-Deployment-Tracking@umich.edu>"
-$body = "Task Sequence failed`n`nComputer Name : [ $Computer ]`nModel : [ $model ]`nMAC : [ $mac ]`n`nTask Sequence : [ $tsname ]`nError Step [ $errorStep ]`n`nPlease see attached logs for details"
+$body = "Task Sequence failed`n`nComputer Name : [ $Computer ]`nModel : [ $model ]`nMAC : [ $mac ]`n`nTask Sequence : [ $tsname ]`nError Step : [ $errorStep ]`n`nPlease see attached logs for details"
 
 
 $Subject = "$Computer FAILED $tsname" 

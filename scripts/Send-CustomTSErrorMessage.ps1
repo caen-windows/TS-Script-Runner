@@ -21,7 +21,7 @@ if (($ComputerName -like "*minint*") -or (-not($ComputerName))){
     $Computer = $Computer -split ' '
     $Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
     if (-not($Computer)){
-        $ComputerName = "Not detected. Please send CAEN the intended computer name."
+        $Computer = "Not detected. Please send CAEN the intended computer name."
     }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
