@@ -481,7 +481,7 @@ if ((-not $product) -and (-not $version)){
 
 #send slack message
 $SlackProperties = [pscustomobject]@{
-    "Product/Version" = "$product $version"
+    "Product/Version" = "$productversion"
     "Task Sequence" = $tsname
     "Computer Model" = $model
     "MAC" = $mac

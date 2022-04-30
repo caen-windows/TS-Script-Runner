@@ -33,7 +33,7 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
             $Computer = "Not entered into task sequence or name service."
         }
         else {
-            $Computer += " (pulled from name service)"
+            $Computer += " (from name service)"
         }
     }
 }
