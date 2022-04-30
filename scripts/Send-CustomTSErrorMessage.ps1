@@ -8,7 +8,7 @@ $Title = $tsenv.value("_SMSTSCustomProgressDialogMessage")
 $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $errorStep = $tsenv.value("ErrorStepName")
 $errorStepCode = $tsenv.value("ErrorStepCode")
-$timeout = $tsenv.value("SMSTSErrorDialogTimeout")
+$timeout = 86400
 $ComputerName = $tsenv.value("CAENComputerName")
 if (($ComputerName -like "*minint*") -or (-not($ComputerName))){
     $scriptpath = $MyInvocation.MyCommand.Path
