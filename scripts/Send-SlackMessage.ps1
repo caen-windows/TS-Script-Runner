@@ -457,9 +457,12 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
     $ip = $ip[0]
 	$Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
 	$Computer = $Computer -split ' '
-	$Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
+	$Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper() 
     if (-not($Computer)){
         $Computer = "Not entered into task sequence or name service."
+    }
+    else{
+        $Computer += " (pulled from name service)"
     }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
