@@ -1,0 +1,20 @@
+{
+	"jsonversion":		"2022.04.30",
+	"changeLog":	[
+						"2022.04.30 : Initial Version"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-EmailLog.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-SlackMessage.ps1",
+			"argumentlist":		""
+		}
+	]
+}
+
+	
