@@ -24,7 +24,7 @@ if (($Computer -like "*minint*") -or (-not($Computer))){
         $Computer = "Not detected. Please send CAEN the intended computer name."
     }
     else{
-        $Computer +=  " (pulled from name service)"
+        $Computer +=  " (from name service)"
     }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS

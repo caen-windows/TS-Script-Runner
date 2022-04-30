@@ -462,7 +462,7 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
         $Computer = "Not entered into task sequence or name service."
     }
     else{
-        $Computer += " (pulled from name service)"
+        $Computer += " (from name service)"
     }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
@@ -475,7 +475,7 @@ else { #when in WinPE the get-netadapter function is not available
 $lastStep = read-sccm-variable("ErrorStepName")
 $lastStepCode = read-sccm-variable("ErrorStepCode")
 $productversion = "$product $version"
-if (-not $productversion){
+if ((-not $product) -and (-not $version)){
     $productversion = "Failed before it could be determined"
 }
 
