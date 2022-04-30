@@ -11,7 +11,18 @@ $errorStepCode = $tsenv.value("ErrorStepCode")
 $timeout = $tsenv.value("SMSTSErrorDialogTimeout")
 $ComputerName = $tsenv.value("CAENComputerName")
 if (($ComputerName -like "*minint*") -or (-not($ComputerName))){
-    $ComputerName = "Not detected. Please send CAEN the intended computer name."
+    $scriptpath = $MyInvocation.MyCommand.Path
+    $dir = Split-Path $scriptpath
+    set-location $dir
+    $ip = get-wmiobject -class "Win32_NetworkAdapterConfiguration" | Where-object { $_.ipaddress} | Where-object { ($_.Description -notlike "*VMware*") } | Select-object -Expand ipaddress 
+    $ip = $ip -split '`n'
+    $ip = $ip[0]
+    $Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
+    $Computer = $Computer -split ' '
+    $Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
+    if (-not($Computer)){
+        $ComputerName = "Not detected. Please send CAEN the intended computer name."
+    }
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
 	$mac = Get-NetAdapter | Where-Object Status -eq "up" | Where-Object Name -NotLike "VMware*" | Select-Object -Expand MacAddress

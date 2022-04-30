@@ -14,7 +14,9 @@ function Read-SCCM-Variable($sccm_variable)
 	return $data
 }
 $tsname = Read-SCCM-Variable("_SMSTSPackageName") #read in task sequence name
-
+$errorstep = Read-SCCM-Variable("ErrorStepName")
+$model = get-ciminstance -ClassName win32_computersystem | select-object -expandproperty model
+$mac = get-ciminstance win32_networkadapter | where-object {$_.AdapterTypeId -eq 0 -and $_.NetConnectionStatus -eq 2} | select-object -expandproperty MACAddress
 $Computer = Read-SCCM-Variable("CAENComputerName")
 if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
 	if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
@@ -26,13 +28,13 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
         $ip = $ip[0]
         $Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
         $Computer = $Computer -split ' '
-        $Computer = $Computer[-1] -replace ".engin.umich.edu",""
+        $Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
     }
 }
 
 $from = "CAEN CLSE Deployment Tracking <CLSE-Deployment-NoReply@umich.edu>"
 $UMODGroup = "CAEN CLSE Deployment Tracking <CAEN-CLSE-Deployment-Tracking@umich.edu>"
-$body = "Task Sequence [ $tsname ] failed on [ $Computer ]. Please see attached logs for details"
+$body = "Task Sequence failed`n`nComputer Name : [ $Computer ]`nModel : [ $model ]`nMAC : [ $mac ]`n`nTask Sequence : [ $tsname ]`nError Step [ $errorStep ]`n`nPlease see attached logs for details"
 
 
 $Subject = "$Computer FAILED $tsname" 

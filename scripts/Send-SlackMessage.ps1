@@ -457,7 +457,7 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
     $ip = $ip[0]
 	$Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
 	$Computer = $Computer -split ' '
-	$Computer = $Computer[-1] -replace ".engin.umich.edu",""
+	$Computer = ($Computer[-1] -replace ".engin.umich.edu","").toupper()
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
 	$mac = Get-NetAdapter | Where-Object Status -eq "up" | Where-Object Name -NotLike "VMware*" | Select-Object -Expand MacAddress
