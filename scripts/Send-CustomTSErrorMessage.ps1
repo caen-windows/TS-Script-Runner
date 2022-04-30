@@ -9,8 +9,8 @@ $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $errorStep = $tsenv.value("ErrorStepName")
 $errorStepCode = $tsenv.value("ErrorStepCode")
 $timeout = 86400
-$ComputerName = $tsenv.value("CAENComputerName")
-if (($ComputerName -like "*minint*") -or (-not($ComputerName))){
+$Computer = $tsenv.value("CAENComputerName")
+if (($Computer -like "*minint*") -or (-not($Computer))){
     $scriptpath = $MyInvocation.MyCommand.Path
     $dir = Split-Path $scriptpath
     set-location $dir
@@ -48,7 +48,7 @@ else{
         $PackageName,`
         $PackageName,`
         $ErrorStep,`
-        "Please send the following information to CAEN for troubleshooting: Computer Name : [ $ComputerName ]   Model : [ $model ]   MAC : [ $mac ]   Error Step : [ $errorstep ]   Return Code : [ $errorStepCode ]",`
+        "Please send the following information to CAEN for troubleshooting: Computer Name : [ $Computer ]   Model : [ $model ]   MAC : [ $mac ]   Error Step : [ $errorstep ]   Return Code : [ $errorStepCode ]",`
         $errorStepCode,`
         $timeout,`
         1,`
