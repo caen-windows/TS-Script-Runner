@@ -447,10 +447,17 @@ $Computer = Read-SCCM-Variable("CAENComputerName")
 $tsname = Read-SCCM-Variable("_SMSTSPackageName") #read in task sequence name
 $product = Read-SCCM-Variable("CAEN_Product")
 $version = Read-SCCM-Variable("CAEN_Version")
-
+$scriptpath = $MyInvocation.MyCommand.Path
+$dir = Split-Path $scriptpath
 #handle unknown computer names
 if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
-	$Computer = "Unknown (Failed in WinPE)"
+    set-location $dir
+    $ip = get-wmiobject -class "Win32_NetworkAdapterConfiguration" | Where-object { $_.ipaddress} | Where-object { ($_.Description -notlike "*VMware*") } | Select-object -Expand ipaddress 
+    $ip = $ip -split '`n'
+    $ip = $ip[0]
+	$Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
+	$Computer = $Computer -split ' '
+	$Computer = $Computer[-1] -replace ".engin.umich.edu",""
 }
 if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 10 Enterprise') {  #only works correctly in full Windows OS
 	$mac = Get-NetAdapter | Where-Object Status -eq "up" | Where-Object Name -NotLike "VMware*" | Select-Object -Expand MacAddress

@@ -17,9 +17,16 @@ $tsname = Read-SCCM-Variable("_SMSTSPackageName") #read in task sequence name
 
 $Computer = Read-SCCM-Variable("CAENComputerName")
 if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
-	$Computer = Read-SCCM-Variable("OSDComputerName")
-    if (-not($Computer)){
-        $Computer = "Computer Name Not Set"
+	if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
+        $scriptpath = $MyInvocation.MyCommand.Path
+        $dir = Split-Path $scriptpath
+        set-location $dir
+        $ip = get-wmiobject -class "Win32_NetworkAdapterConfiguration" | Where-object { $_.ipaddress} | Where-object { ($_.Description -notlike "*VMware*") } | Select-object -Expand ipaddress 
+        $ip = $ip -split '`n'
+        $ip = $ip[0]
+        $Computer = .\nslookup.exe $ip | Select-String -pattern "engin.umich.edu"
+        $Computer = $Computer -split ' '
+        $Computer = $Computer[-1] -replace ".engin.umich.edu",""
     }
 }
 

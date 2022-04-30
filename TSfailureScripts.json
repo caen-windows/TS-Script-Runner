@@ -13,6 +13,11 @@
 			"computernamestring": 	"all",
 			"script":	"scripts\\Send-SlackMessage.ps1",
 			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-CustomTSErrorMessage.ps1",
+			"argumentlist":		""
 		}
 	]
 }
