@@ -471,7 +471,7 @@ if ((Get-WmiObject -class Win32_OperatingSystem).Caption -eq 'Microsoft Windows 
 else { #when in WinPE the get-netadapter function is not available
 	$mac = get-wmiobject -class "Win32_NetworkAdapterConfiguration" | Select-Object description, macaddress | Where-Object {$_.macaddress -and $_.description -notmatch "VMware*"} | Select-Object -expand macaddress
 }
-
+$mac = $mac -replace ":","-"
 $lastStep = read-sccm-variable("ErrorStepName")
 $lastStepCode = read-sccm-variable("ErrorStepCode")
 $productversion = "$product $version"
