@@ -52,6 +52,12 @@ while (-not($validComputer)){
 		remove-psdrive umroot
 		return 1337 #Cancel the Task Sequence with this error code
 	}
+	elseif ($ComputerName.length -gt 15){
+		$TSProgressUI.CloseProgressDialog()
+		[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic') | Out-Null
+		$ComputerName = [Microsoft.VisualBasic.Interaction]::InputBox("$ComputerName length is greater than the allowed 15 character limit. Please enter a new computer name.", "Computer name prompt", "Example:  caen-testcomp")
+	
+	}
 	elseif (!$computerObject){
 		# Close the TS UI temporarily
 		$TSProgressUI.CloseProgressDialog()
