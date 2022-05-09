@@ -51,7 +51,7 @@ else{
         $PackageName,`
         $PackageName,`
         $ErrorStep,`
-        "Please send the following information to CAEN for troubleshooting: Computer Name : [ $Computer ]   Model : [ $model ]   MAC : [ $mac ]   Error Step : [ $errorstep ]   Return Code : [ $errorStepCode ]",`
+        "Please send the following information to CAEN for troubleshooting:  Computer Name : [ $Computer ]   Model : [ $model ]   MAC : [ $mac ]   Error Step : [ $errorstep ]   Return Code : [ $errorStepCode ]",`
         $errorStepCode,`
         $timeout,`
         1,`
