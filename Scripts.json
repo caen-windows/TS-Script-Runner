@@ -16,14 +16,14 @@
 			"script":	"scripts\\Set-ReloadMode.ps1",
 			"argumentlist":		""
 		},
-        {
-			"computernamestring": 	"all",
-			"script":	"scripts\\Show-ProductSummary.ps1",
-			"argumentlist":		""
-		},
 		{
 			"computernamestring": 	"all",
 			"script":	"scripts\\Find-Disk.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-ProductSummary.ps1",
 			"argumentlist":		""
 		},
         {
