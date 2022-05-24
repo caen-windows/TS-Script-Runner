@@ -444,6 +444,7 @@ function Read-SCCM-Variable($sccm_variable)
 $url = Read-SCCM-Variable("CAENSlackWebhookUrl")
 $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $Computer = Read-SCCM-Variable("CAENComputerName")
+$Computer = $Computer.toupper()
 $tsname = Read-SCCM-Variable("_SMSTSPackageName") #read in task sequence name
 $product = Read-SCCM-Variable("CAEN_Product")
 $version = Read-SCCM-Variable("CAEN_Version")
