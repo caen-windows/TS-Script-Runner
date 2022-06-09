@@ -60,14 +60,18 @@ $message.Subject = $Subject
 $logpath = Read-SCCM-Variable("_smstslogpath") 
 $logpath = ($logpath -as [string]) + "\"
 $filepath = $logpath + "smsts*.log"
+$driverpath = $logpath + "*driverload.log"
 $fsitem = Get-Item $filepath
+$fs2item = get-item $driverpath
 $loglist = get-childitem $fsitem
+$loglist += get-childitem $fs2item
 $unlockedfolder = $logpath + "unlocked\"
 New-Item $unlockedfolder -type directory
 foreach ($element in $loglist) {
 	$outfile = $unlockedfolder + $element.name
 	get-content $element | out-file $outfile
 }
+
 
 $filepath = $unlockedfolder + "*" #get all files from created folder
 $fsitem = Get-Item $filepath
