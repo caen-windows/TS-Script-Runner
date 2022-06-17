@@ -21,6 +21,11 @@
 			"script":	"scripts\\Find-Disk.ps1",
 			"argumentlist":		""
 		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-BIOS-Settings.ps1",
+			"argumentlist":		""
+		},
         {
 			"computernamestring": 	"all",
 			"script":	"scripts\\Show-ProductSummary.ps1",
