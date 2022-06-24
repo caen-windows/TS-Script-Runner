@@ -530,8 +530,8 @@ foreach ($Prop in $SlackProperties.psobject.Properties.Name){
 
 
 # Call appropriate utility to get BIOS settings 
-$Dell_BIOS_Setting_Util = ".\Manage-DellBiosSettings-WMI-Mod.ps1"
-$HP_BIOS_Setting_Util = ".\BiosConfigUtility64.exe"
+$Dell_BIOS_Setting_Util = $dir + "\Manage-DellBiosSettings-WMI-Mod.ps1"
+$HP_BIOS_Setting_Util = $dir + "\BiosConfigUtility64.exe"
 
 if($Manufacturer -eq "Dell Inc.") {
 	$settingsfile = $Env:Temp + "\BIOSSettings.csv"
