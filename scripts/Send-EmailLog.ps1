@@ -57,26 +57,26 @@ $message.To.Add($UMODGroup)
 $message.Subject = $Subject
 
 #find attachments and deal with locked files
-$logpath = Read-SCCM-Variable("_smstslogpath") 
-$logpath = ($logpath -as [string]) + "\"
-$filepath = $logpath + "smsts*.log"
-$driverpath = $logpath + "*driverload.log"
-$fsitem = Get-Item $filepath
-$fs2item = get-item $driverpath
-$loglist = get-childitem $fsitem
-$loglist += get-childitem $fs2item
-$unlockedfolder = $logpath + "unlocked\"
-New-Item $unlockedfolder -type directory
-foreach ($element in $loglist) {
-	$outfile = $unlockedfolder + $element.name
-	get-content $element | out-file $outfile
+try {
+    $logpath = $tsenv.Value("_smstslogpath") 
+    $filepath = join-path -path $logpath -childpath "smsts*.log"
+    $driverfilepath = join-path -path $logpath -childpath "*driverload.log"
+    $loglist = get-childitem $filepath, $driverfilepath
+    if ($loglist){
+        New-Item (join-path -path $logpath -childpath "unlocked") -type directory
+        foreach ($element in $loglist) {
+            $outfile = $unlockedfolder + $element.name
+            get-content $element | out-file (join-path -path (join-path -path $logpath -childpath "unlocked") -childpath $element.name)
+        }
+        $loglist = get-childitem (join-path -path $logpath -childpath "unlocked")
+        $loglist | ForEach-Object {$message.Attachments.Add($_.fullname)}
+    }
 }
 
-
-$filepath = $unlockedfolder + "*" #get all files from created folder
-$fsitem = Get-Item $filepath
-$loglist = get-childitem $fsitem
-$loglist | ForEach-Object {$message.Attachments.Add($unlockedfolder + $_.name)}
+catch {
+    $body += "`nUnable to attach logs"
+}
+    
 
 $message.body = $body
 $smtp.Send($message)
