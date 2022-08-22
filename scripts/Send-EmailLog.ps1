@@ -58,7 +58,7 @@ $message.Subject = $Subject
 
 #find attachments and deal with locked files
 try {
-    $logpath = $tsenv.Value("_smstslogpath") 
+    $logpath = Read-SCCM-Variable "_smstslogpath"
     $filepath = join-path -path $logpath -childpath "smsts*.log"
     $driverfilepath = join-path -path $logpath -childpath "*driverload.log"
     $loglist = get-childitem $filepath, $driverfilepath
