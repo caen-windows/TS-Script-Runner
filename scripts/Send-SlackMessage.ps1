@@ -475,16 +475,53 @@ else { #when in WinPE the get-netadapter function is not available
 $mac = $mac -replace ":","-"
 $lastStep = read-sccm-variable("ErrorStepName")
 $lastStepCode = read-sccm-variable("ErrorStepCode")
-$productversion = "$product $version"
+$productversion = "$product | $version"
 if ((-not $product) -and (-not $version)){
     $productversion = "Failed before it could be determined"
 }
 
+$ComputerManufacturer = (Get-WmiObject -Class "Win32_ComputerSystem" | Select-Object -ExpandProperty Manufacturer).Trim()
+switch -Wildcard ($ComputerManufacturer) {
+	"*Microsoft*" {
+		$SystemSKU = Get-WmiObject -Namespace "root\wmi" -Class "MS_SystemInformation" | Select-Object -ExpandProperty SystemSKU
+	}
+	"*HP*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+	"*Hewlett-Packard*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+	"*Dell*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").SystemSku.Trim()
+	}
+	"*Lenovo*" {
+		$SystemSKU = ((Get-WmiObject -Class "Win32_ComputerSystem" | Select-Object -ExpandProperty Model).SubString(0, 4)).Trim()
+	}
+	"*Panasonic*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+   "*Viglen*" {
+		$SystemSKU = (Get-WmiObject -Class "Win32_BaseBoard" | Select-Object -ExpandProperty SKU).Trim()
+	}
+	"*AZW*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace root\WMI).BaseBoardProduct.Trim()
+	}
+	"*Fujitsu*" {
+		$SystemSKU = (Get-WmiObject -Class "Win32_BaseBoard" | Select-Object -ExpandProperty SKU).Trim()
+	}
+	"*Getac*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace root\WMI).BaseBoardProduct.Trim()
+	}
+}
+if (-not($SystemSKU)){
+    $SystemSKU = "Unknown"
+}
+
 #send slack message
 $SlackProperties = [pscustomobject]@{
-    "Product/Version" = "$productversion"
+    "Product | Version" = "$productversion"
     "Task Sequence" = $tsname
-    "Computer Model" = $model
+    "Computer Model | SKU" = "$model | $SystemSKU"
     "MAC" = $mac
     "Failed Step" = $laststep
     "Return Code" = $lastStepCode
