@@ -38,9 +38,47 @@ if (($Computer.ToLower() -like 'minwinpc*') -or !$Computer ){
     }
 }
 
+
+$ComputerManufacturer = (Get-WmiObject -Class "Win32_ComputerSystem" | Select-Object -ExpandProperty Manufacturer).Trim()
+switch -Wildcard ($ComputerManufacturer) {
+	"*Microsoft*" {
+		$SystemSKU = Get-WmiObject -Namespace "root\wmi" -Class "MS_SystemInformation" | Select-Object -ExpandProperty SystemSKU
+	}
+	"*HP*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+	"*Hewlett-Packard*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+	"*Dell*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").SystemSku.Trim()
+	}
+	"*Lenovo*" {
+		$SystemSKU = ((Get-WmiObject -Class "Win32_ComputerSystem" | Select-Object -ExpandProperty Model).SubString(0, 4)).Trim()
+	}
+	"*Panasonic*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace "root\WMI").BaseBoardProduct.Trim()
+	}
+   "*Viglen*" {
+		$SystemSKU = (Get-WmiObject -Class "Win32_BaseBoard" | Select-Object -ExpandProperty SKU).Trim()
+	}
+	"*AZW*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace root\WMI).BaseBoardProduct.Trim()
+	}
+	"*Fujitsu*" {
+		$SystemSKU = (Get-WmiObject -Class "Win32_BaseBoard" | Select-Object -ExpandProperty SKU).Trim()
+	}
+	"*Getac*" {
+		$SystemSKU = (Get-CIMInstance -ClassName "MS_SystemInformation" -NameSpace root\WMI).BaseBoardProduct.Trim()
+	}
+}
+if (-not($SystemSKU)){
+    $SystemSKU = "Unknown"
+}
+
 $from = "CAEN CLSE Deployment Tracking <CLSE-Deployment-NoReply@umich.edu>"
 $UMODGroup = "CAEN CLSE Deployment Tracking <CAEN-CLSE-Deployment-Tracking@umich.edu>"
-$body = "Task Sequence failed`n`nComputer Name : [ $Computer ]`nModel : [ $model ]`nMAC : [ $mac ]`n`nTask Sequence : [ $tsname ]`nError Step : [ $errorStep ]`n`nPlease see attached logs for details"
+$body = "Task Sequence failed`n`nComputer Name : [ $Computer ]`nSKU : [ $SystemSKU ]`nModel : [ $model ]`nMAC : [ $mac ]`n`nTask Sequence : [ $tsname ]`nError Step : [ $errorStep ]`n`nPlease see attached logs for details"
 
 
 $Subject = "$Computer FAILED $tsname" 
