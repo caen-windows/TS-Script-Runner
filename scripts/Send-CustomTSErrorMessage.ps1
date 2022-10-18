@@ -39,7 +39,7 @@ if ($errorStep -like "*Detect Disk*"){
         $PackageName,`
         $PackageName,`
         $ErrorStep,`
-        "No disk detected to install the CLSEBD on. If a disk is installed a driver is likely missing. Put the driver on a usb drive, boot into the CLSEBD installer, and use drvload to load it before starting the task sequence next time. Please include the computer model [ $model ] if you open a ticket with CAEN.",`
+        "No disk detected to install the CLSEBD on. It could be a missing WinPE disk driver or a BIOS set to RAID mode. See the CAEN knowledge base for more information about adding drivers to WinPE. Please include the computer model [ $model ] if you open a ticket with CAEN.",`
         $errorStepCode,`
         $timeout,`
         1,`
