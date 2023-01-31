@@ -1,0 +1,33 @@
+{
+	"jsonversion":		"2023.01.31",
+	"changeLog":	[
+						"2023.01.31 : New Version for CLSEBD 2023"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-ComputerNameAndProduct.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Set-ReloadMode.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Find-Disk.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-BIOS-Settings.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-ProductSummary.ps1",
+			"argumentlist":		""
+		}
+	]
+}
