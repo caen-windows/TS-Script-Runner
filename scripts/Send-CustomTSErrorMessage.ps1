@@ -8,6 +8,11 @@ $Title = $tsenv.value("_SMSTSCustomProgressDialogMessage")
 $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $errorStep = $tsenv.value("ErrorStepName")
 $errorStepCode = $tsenv.value("ErrorStepCode")
+try{
+    $errorStepCode = [int]$errorStepCode
+}catch {
+    $errorStepCode = -1
+}
 $timeout = 86400
 $Computer = $tsenv.value("CAENComputerName")
 if (($Computer -like "*minint*") -or (-not($Computer))){
