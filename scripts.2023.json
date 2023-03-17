@@ -1,12 +1,13 @@
 {
-	"jsonversion":		"2023.01.31",
+	"jsonversion":		"2023.03.17",
 	"changeLog":	[
+						"2023.03.17 : Get-NameAndProduct.ps1 replaces Get-ComputerNameAndProduct.ps1 to allow for EBD systems outside the CAEN OU",
 						"2023.01.31 : New Version for CLSEBD 2023"
 					],
 	"entries":	[
 		{
 			"computernamestring": 	"all",
-			"script":	"scripts\\Get-ComputerNameAndProduct.ps1",
+			"script":	"scripts\\Get-NameAndProduct.ps1",
 			"argumentlist":		""
 		},
 		{
