@@ -43,6 +43,7 @@ write-output "GitHub repo downloaded to [ $DownloadLocation ]"
 $jsonFilePath = join-path -path $DownloadLocation -ChildPath $JsonFileName
 write-output "Reading in script json file [ $jsonFilePath ]"
 $json = Get-Content -Raw -Path $jsonFilePath | ConvertFrom-Json
+write-output "Json script version: [ $($json.jsonversion) ]"
 $entryCount = 0 #for keeping track of current step for TS the progress UI
 write-output "There are [ $($json.entries.count) ] scripts to run in the json file"
 foreach ($entry in $json.entries){
