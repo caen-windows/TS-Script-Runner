@@ -12,7 +12,7 @@ else{
 }
 
 #Display summary of the task sequence
-$Message = "The product to install has been dynamically selected based on the Active Directory OU of the computer object. Summary: `n`nProduct:                   $product`nReload mode::     $reloadMode`nComputer Name:   $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
+$Message = "The product to install has been dynamically selected based on the Active Directory OU of the computer object. Summary: `n`nProduct:                   $product`nReload mode:        $reloadMode`nComputer Name:   $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
 $SecondsToWait = 120 #amount of time before the box automatically closes
 $Title = "CAEN Product Summary"
 $Button = 0 #a single OK button (https://msdn.microsoft.com/en-us/library/x83z1d9f(v=vs.84).aspx)
