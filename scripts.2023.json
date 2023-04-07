@@ -27,7 +27,7 @@
 		},
         {
 			"computernamestring": 	"all",
-			"script":	"scripts\\Win11Show-ProductSummary.ps1",
+			"script":	"scripts\\Show-Win11ProductSummary.ps1",
 			"argumentlist":		""
 		}
 	]
