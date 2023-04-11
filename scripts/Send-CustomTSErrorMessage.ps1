@@ -9,7 +9,7 @@ $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $errorStep = $tsenv.value("ErrorStepName")
 $errorStepCode = $tsenv.value("ErrorStepCode")
 try{
-    $errorStepCode = [int]$errorStepCode
+    $errorStepCode = [uint32]$errorStepCode
 }catch {
     $errorStepCode = -1
 }
