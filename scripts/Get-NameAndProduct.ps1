@@ -81,7 +81,7 @@ while (-not($validComputer)){
 }
 
 #------------------Set TS variables----------------------------
-$tsenv.Value("DistinguishedName") = [string]$computerObject.distinguishedName
+$tsenv.Value("DistinguishedName") = [string]$computerObject.distinguishedName #variable is used by get-clsebddistribution.ps1
 $tsenv.Value("OSDComputerName") = $ComputerName
 $tsenv.Value("CAENComputerName") = $ComputerName
 
