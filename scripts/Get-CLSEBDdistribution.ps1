@@ -27,4 +27,4 @@ if ($computerDN -like $TestingOU){
 elseif ($computerDN -like $UnstableOU){
     $returnValue = "Unstable"
 }
-$tsenv.Value("Distribution") = $returnValue
+$tsenv.Value("CAEN_DISTRIBUTION") = $returnValue
