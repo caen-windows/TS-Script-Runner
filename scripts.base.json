@@ -1,7 +1,7 @@
 {
 	"jsonversion":		"2023.04.13",
 	"changeLog":	[
-						"2023.04.13 : Just calls the script to get the computer name"
+						"2023.04.13 : Scripts to run in base TS"
 					],
 	"entries":	[
 		{
