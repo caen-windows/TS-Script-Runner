@@ -1,0 +1,18 @@
+{
+	"jsonversion":		"2023.04.13",
+	"changeLog":	[
+						"2023.04.13 : Just calls the script to get the computer name"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-NameAndProduct.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-CLSEBDdistribution.ps1",
+			"argumentlist":		""
+		}
+	]
+}
