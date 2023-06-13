@@ -9,9 +9,9 @@ $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $errorStep = $tsenv.value("ErrorStepName")
 $errorStepCode = $tsenv.value("ErrorStepCode")
 try{
-    $errorStepCode = [uint32]$errorStepCode
+    $errorStepCode = [uint32][Math]::Abs($errorStepCode)
 }catch {
-    $errorStepCode = -1
+    $errorStepCode = 1
 }
 $timeout = 86400
 $Computer = $tsenv.value("CAENComputerName")
