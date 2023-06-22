@@ -68,7 +68,7 @@ while (-not($validComputer)){
 		$tsenv.Value("CLSEBD") = "CLSE"
 		$validComputer = $True
 	}
-	elseif ($computerObject.distinguishedName -like "*OU=CAEN,OU=ENGIN,OU=Organizations,OU=UMICH,DC=adsroot,DC=itcs,DC=umich,DC=edu"){
+	elseif ($computerObject.distinguishedName -like "*OU=Engineering Base Desktop,OU=CAEN Managed Desktops,OU=CAEN,OU=ENGIN,OU=Organizations,OU=UMICH,DC=adsroot,DC=itcs,DC=umich,DC=edu"){
 		$tsenv.Value("CLSEBD") = "EBD"
 		$validComputer = $True
 	}
