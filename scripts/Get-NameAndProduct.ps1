@@ -68,7 +68,7 @@ while (-not($validComputer)){
 		$tsenv.Value("CLSEBD") = "CLSE"
 		$validComputer = $True
 	}
-	elseif ($computerObject.distinguishedName -like "*OU=Engineering Base Desktop,OU=CAEN Managed Desktops,OU=CAEN,OU=ENGIN,OU=Organizations,OU=UMICH,DC=adsroot,DC=itcs,DC=umich,DC=edu"){
+	elseif ($computerObject.distinguishedName -like "*OU=Windows 11,OU=Engineering Base Desktop,OU=CAEN Managed Desktops,OU=CAEN,OU=ENGIN,OU=Organizations,OU=UMICH,DC=adsroot,DC=itcs,DC=umich,DC=edu"){
 		$tsenv.Value("CLSEBD") = "EBD"
 		$validComputer = $True
 	}
@@ -76,7 +76,7 @@ while (-not($validComputer)){
 		# Close the TS UI temporarily
 		$TSProgressUI.CloseProgressDialog()
 		[System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic') | Out-Null
-		$ComputerName = [Microsoft.VisualBasic.Interaction]::InputBox("$ComputerName is not located in a valid CLSE or Engin Active Directory OU. Move the computer object or select a new computer name.", "Computer name prompt", "Example:  caen-testcomp")
+		$ComputerName = [Microsoft.VisualBasic.Interaction]::InputBox("$ComputerName is not located in a valid Windows 11 CLSE or EBD Active Directory OU. Move the computer object or select a new computer name.", "Computer name prompt", "Example:  caen-testcomp")
 	}
 }
 
