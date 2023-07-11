@@ -1,9 +1,7 @@
 $tsenv = new-object -comobject Microsoft.SMS.TSEnvironment
 $ztilinux = $tsenv.Value("ZTILinux")
-
+$tsenv.Value('LeaveLinux') = "true"
 if (test-path (join-path $env:TEMP -ChildPath "linuxexists.txt") -and ($ztilinux = "true")){
-	$tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
-
 	#Close the TS UI temporarily
 	$TSProgressUI = New-Object -COMObject Microsoft.SMS.TSProgressUI
 	$TSProgressUI.CloseProgressDialog()
@@ -17,8 +15,8 @@ if (test-path (join-path $env:TEMP -ChildPath "linuxexists.txt") -and ($ztilinux
 
 	$choice = (New-Object -ComObject Wscript.Shell).popup($Message,$SecondsToWait,$Title,$Button + $Icon + $DefaultToNo)
 
-	if ($choice -ne 6){ #6 equals a 'Yes'
-		$tsenv.Value('LeaveLinux') = "true"
+	if ($choice -eq 6){ #6 equals a 'Yes'
+		$tsenv.Value('LeaveLinux') = "false"
 	}
 }
 	
