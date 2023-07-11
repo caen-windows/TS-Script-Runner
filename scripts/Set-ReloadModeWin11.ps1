@@ -1,7 +1,7 @@
 $tsenv = new-object -comobject Microsoft.SMS.TSEnvironment
 $ztilinux = $tsenv.Value("ZTILinux")
-$tsenv.Value('LeaveLinux') = "true"
-if (test-path (join-path $env:TEMP -ChildPath "linuxexists.txt") -and ($ztilinux = "true")){
+if (test-path (join-path $env:TEMP -ChildPath "linuxexists.txt") -and ($ztilinux -eq "true")){
+	$tsenv.Value('LeaveLinux') = "true"
 	#Close the TS UI temporarily
 	$TSProgressUI = New-Object -COMObject Microsoft.SMS.TSProgressUI
 	$TSProgressUI.CloseProgressDialog()
