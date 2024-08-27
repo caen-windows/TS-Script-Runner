@@ -1,0 +1,13 @@
+{
+	"jsonversion":		"2024.08.26",
+	"changeLog":	[
+						"2024.08.26 Used in Win 10 EBD Request TS"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-EBDRequestMessage.ps1",
+			"argumentlist":		""
+		}
+	]
+}
