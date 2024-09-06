@@ -25,4 +25,4 @@ This repo contains three different components:
 Any output of the child scripts to be used later in the task sequence should be stored in task sequence variables. The ramdisk they are downloaded to is ephemeral and the hard disk is going to be formatted, so writing to a local file is not appropriate. 
 
 ### Runtime Limitations
-Note that each child script can be timed out by `Start-ScriptRunner.ps1` to ensure the task sequence can always be zero touch deployed. The number of seconds before this occurs is defined in the `-AllowedScriptRunTime` argument for `Start-ScriptRunner.ps1`.
+Note that each child script can be timed out by `Start-ScriptRunner.ps1` to ensure the task sequence can always be zero touch deployed. The number of seconds before this occurs is defined in the `-AllowedScriptRunTime` argument for `Start-ScriptRunner.ps1`. 
