@@ -1,6 +1,7 @@
 $tsenv = New-Object -COMObject Microsoft.SMS.TSEnvironment
 
 $Product = $tsenv.Value("CLSEBD")
+$Version = $tsenv.Value("CAEN_VERSION")
 $ComputerName = $tsenv.Value("CAENComputerName")
 $Model = Get-WmiObject Win32_Computersystem | foreach-object {$_.Model}
 
@@ -12,10 +13,10 @@ else{
 }
 
 if ($Product -eq "CLSE"){
-	$Message = "Product:                 $product `nReload mode:        $reloadMode`nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
+	$Message = "Product:                 $product $version `nReload mode:        $reloadMode`nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
 }
 else{
-	$Message = "Product:                 $product `nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
+	$Message = "Product:                 $product $version `nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
 }
 
 #Display summary of the task sequence
