@@ -10,7 +10,7 @@ $pw = $tsenv.Value("CaenAdPw")
 $tsenv.Value("CaenAdPwKey") -replace ",","`n" | out-file .\key -encoding utf8 
 
 $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $user, ($pw | convertto-securestring -key (get-content .\key))
-
+remove-item .\key
 #Try connecting to AD
 $retries = 0
 
