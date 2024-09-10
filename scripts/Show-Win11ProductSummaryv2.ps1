@@ -6,10 +6,15 @@ $Model = Get-WmiObject Win32_Computersystem | foreach-object {$_.Model}
 
 if ($tsenv.Value("ZTILinux") -eq "true"){
 	$reloadMode = "Dual Boot Linux"
-	$Message = "Product:                 $product `nReload mode:        $reloadMode`nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
 }
 else{
 	$reloadMode = "Single Boot Windows"
+}
+
+if ($Product -eq "CLSE"){
+	$Message = "Product:                 $product `nReload mode:        $reloadMode`nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
+}
+else{
 	$Message = "Product:                 $product `nComputer Name:  $ComputerName `nModel:                     $Model`n`nThis box will automatically close in two minutes." 
 }
 
