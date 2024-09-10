@@ -6,7 +6,7 @@
 	"entries":	[
 		{
 			"computernamestring": 	"all",
-			"script":	"scripts\\Get-CLSECompName.ps1",
+			"script":	"scripts\\Get-EBDCompName.ps1",
 			"argumentlist":		""
 		},
         {
