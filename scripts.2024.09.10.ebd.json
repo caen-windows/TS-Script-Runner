@@ -9,11 +9,6 @@
 			"script":	"scripts\\Get-EBDCompName.ps1",
 			"argumentlist":		""
 		},
-        {
-			"computernamestring": 	"all",
-			"script":	"scripts\\Set-ReloadModeWin11.ps1",
-			"argumentlist":		""
-		},
 		{
 			"computernamestring": 	"all",
 			"script":	"scripts\\Find-Disk.ps1",
