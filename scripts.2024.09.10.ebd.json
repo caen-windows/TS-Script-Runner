@@ -1,12 +1,12 @@
 {
-	"jsonversion":		"2023.04.13",
+	"jsonversion":		"2024.09.10",
 	"changeLog":	[
 						"2023.04.13 : Scripts to run in base TS"
 					],
 	"entries":	[
 		{
 			"computernamestring": 	"all",
-			"script":	"scripts\\Get-NameAndProduct.ps1",
+			"script":	"scripts\\Get-CLSECompName.ps1",
 			"argumentlist":		""
 		},
         {
