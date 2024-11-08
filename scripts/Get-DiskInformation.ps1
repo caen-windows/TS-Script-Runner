@@ -13,7 +13,7 @@ if ($nonUsbDisks){
     }
     if ($diskinfo.count -ne 1){
         $diskinfostring = $diskinfo | out-string
-        $Message = "Warning: multiple disks detected. This can cause an installation failure or loss of data.`n`nPlease disconnect all disks but the one you intend to install the OS to before continuing.$diskinfostring"
+        $Message = "Warning: multiple disks detected. This can cause an installation failure and loss of data on Disk 0.`n`nPlease disconnect all disks except the one you intend to install the OS to and restart the installation.$diskinfostring"
         $Message = $message.trim()
         
         $Title = "CAEN Notification"
