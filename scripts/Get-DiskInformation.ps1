@@ -5,10 +5,9 @@ if ($nonUsbDisks){
         $properties = @{
             "Number" = $disk.number
             "Name" = $disk.FriendlyName
+            "Model" = $disk.model
             "Serial" = $disk.serialnumber
             "Size (GB)" = $size
-            "Partition Count" = $disk.numberofpartitions
-            "Partition Style" = $disk.partitionstyle
         }
         new-object -typename psobject -property $properties
     }
