@@ -26,7 +26,7 @@ if ($nonUsbDisks){
 
         [System.Reflection.Assembly]::LoadWithPartialName('Microsoft.VisualBasic') | Out-Null   
         $output = (New-Object -ComObject Wscript.Shell).popup($Message,$SecondsToWait,$Title,$Button + $Icon)
-        if (-not($output -eq 1 -or $output = -1)){
+        if (-not($output -eq 1 -or $output -eq -1)){
             restart-computer -force
         }
     }
