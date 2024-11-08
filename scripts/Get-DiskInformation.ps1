@@ -18,8 +18,8 @@ if ($nonUsbDisks){
         
         $Title = "CAEN Notification"
         $Button = 0 #a single OK button (https://msdn.microsoft.com/en-us/library/x83z1d9f(v=vs.84).aspx)
-        $Icon = 64 #an Information icon
-        $SecondsToWait = 900 #15 minutes
+        $Icon = 48 #an Exclamation mark icon
+        $SecondsToWait = 1800 #30 minutes
 
         $TSProgressUI = New-Object -COMObject Microsoft.SMS.TSProgressUI
         $TSProgressUI.CloseProgressDialog()
