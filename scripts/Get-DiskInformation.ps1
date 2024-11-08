@@ -13,6 +13,8 @@ if ($nonUsbDisks){
         new-object -typename psobject -property $properties
     }
     if ($diskinfo.count -ne 1){
+        $ofs = '`n'
+        [string]$diskinfostring = $diskinfo 
         $Message = "Warning: multiple disks detected. This can cause an installation failure or loss of data. Please disconnect all disks but the one you intend to install the OS to before continuing.`n`n$diskinfo"
         $Title = "CAEN Notification"
         $Button = 0 #a single OK button (https://msdn.microsoft.com/en-us/library/x83z1d9f(v=vs.84).aspx)
