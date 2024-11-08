@@ -11,7 +11,7 @@ if ($nonUsbDisks){
         }
         new-object -typename psobject -property $properties
     }
-    if ($diskinfo.count -ne 1){
+    if ($nonUsbDisks.count -gt 1){
         $diskinfostring = $diskinfo | out-string
         $Message = "Warning: multiple disks detected. This can cause an installation failure and loss of data on Disk 0.`n`nPlease disconnect all disks except the one you intend to install the OS to and restart the installation.$diskinfostring"
         $Message = $message.trim()
