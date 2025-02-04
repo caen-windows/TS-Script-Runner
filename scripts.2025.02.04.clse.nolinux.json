@@ -1,0 +1,29 @@
+{
+	"jsonversion":		"2025.02.04",
+	"changeLog":	[
+						"2025.02.04 : Removed hooks to install Linux",
+                        "2023.04.13 : Scripts to run in base TS"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-CLSECompName.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Find-Disk.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-BIOS-Settings.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-Win11ProductSummaryNoLinux.ps1",
+			"argumentlist":		""
+		}
+	]
+}
