@@ -26,6 +26,11 @@ if (($leaveLinux -ne "true") -and ($leaveLinux -ne "false")){
 		$leaveLinux = $tsenv.Value("LeaveLinux")
 		write-output "Selection box choice = [ $choice ]. LeaveLinux now equals [ $leavelinux ]."
 	}
+	elseif (-not $linuxexists){
+		$tsenv.Value('LeaveLinux') = "false"
+		$leaveLinux = $tsenv.Value('LeaveLinux')
+		write-output "Setting LeaveLinux to FALSE because Linux doesn't exist. LeaveLinux = [ $leavelinux ]. ZTILinux = [ $ztilinux ]. LinuxExists = [ $linuxexists ]."
+	}
 	else {
 		write-output "Skipping display of reload mode selection box. LeaveLinux = [ $leavelinux ]. ZTILinux = [ $ztilinux ]. LinuxExists = [ $linuxexists ]."
 	}
