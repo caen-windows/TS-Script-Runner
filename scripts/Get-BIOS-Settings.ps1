@@ -466,7 +466,7 @@ function Read-SCCM-Variable($sccm_variable)
 ###################################################################################################
 
 
-$url = Read-SCCM-Variable("CAENSlackWebhookUrl")
+$url = Read-SCCM-Variable("CAENBiosSlackWebhookUrl")
 $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $Computer = Read-SCCM-Variable("CAENComputerName")
 $Computer = $Computer.toupper()
