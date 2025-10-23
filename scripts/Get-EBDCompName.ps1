@@ -66,6 +66,7 @@ while (-not($validComputer)){
 	}
 	elseif ($computerObject.distinguishedName -like "*OU=Engineering Base Desktop,OU=CAEN Managed Desktops,OU=CAEN,OU=ENGIN,OU=Organizations,OU=UMICH,DC=adsroot,DC=itcs,DC=umich,DC=edu"){
 		$validComputer = $True
+		$tsenv.Value("DistinguishedName") = [string]$computerObject.distinguishedName #variable is used by get-clsebddistribution.ps1
 	}
 	else {
 		# Close the TS UI temporarily
@@ -76,7 +77,7 @@ while (-not($validComputer)){
 }
 
 #------------------Set TS variables----------------------------
-#$tsenv.Value("DistinguishedName") = [string]$computerObject.distinguishedName #variable is used by get-clsebddistribution.ps1
+
 $tsenv.Value("OSDComputerName") = $ComputerName
 $tsenv.Value("CAENComputerName") = $ComputerName
 
