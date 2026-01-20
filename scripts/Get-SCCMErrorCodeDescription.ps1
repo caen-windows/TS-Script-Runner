@@ -1125,6 +1125,6 @@ $lastStepCode = $tsenv.Value("ErrorStepCode")
 $description =  "Error code missing from SCCM lookup table"
 $FoundErrorCode = $errorcodes | where-object {$_.signedintegererror -eq $lastStepCode} | select-object -expandproperty description
 if ($FoundErrorCode){
-    $description = write-output $FoundErrorCode
+    $description = $FoundErrorCode
 }
 $tsenv.Value("ErrorStepCodeDescription") = $description
