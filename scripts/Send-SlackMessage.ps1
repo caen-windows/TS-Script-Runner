@@ -440,7 +440,6 @@ function Read-SCCM-Variable($sccm_variable)
 }
 
 
-
 $url = Read-SCCM-Variable("CAENSlackWebhookUrl")
 $model = (Get-WmiObject -Class:Win32_ComputerSystem).Model
 $Computer = Read-SCCM-Variable("CAENComputerName")
@@ -475,6 +474,10 @@ else { #when in WinPE the get-netadapter function is not available
 $mac = $mac -replace ":","-"
 $lastStep = read-sccm-variable("ErrorStepName")
 $lastStepCode = read-sccm-variable("ErrorStepCode")
+$lastStepCodeDescription = read-sccm-variable("ErrorStepCodeDescription")
+if (-not($lastStepCodeDescription)){
+    $lastStepCodeDescription = "Return code missing from SCCM lookup table"
+}
 $productversion = "$product | $version"
 if ((-not $product) -and (-not $version)){
     $productversion = "Failed before it could be determined"
@@ -525,6 +528,7 @@ $SlackProperties = [pscustomobject]@{
     "MAC" = $mac
     "Failed Step" = $laststep
     "Return Code" = $lastStepCode
+    "Return Code Description" = $lastStepCodeDescription
 }
 $SlackFields = @()
 foreach ($Prop in $SlackProperties.psobject.Properties.Name){
