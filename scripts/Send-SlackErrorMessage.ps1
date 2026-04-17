@@ -1,7 +1,3 @@
-Param(
-		[string]$slackChannel = "#windows-logs"
-	)
-
 $ErrorActionPreference = 'SilentlyContinue'
 
 function Read-SCCM-Variable($sccm_variable)
@@ -543,6 +539,6 @@ foreach ($Prop in $SlackProperties.psobject.Properties.Name){
     }
 }
 $att = New-SlackMessageAttachment -Color "danger" -Title "Task Sequence Failed : $Computer" -Fields $SlackFields -fallback "$Computer"
-new-slackmessage -Channel $SlackChannel -Attachments $att -IconUrl "https://m.media-amazon.com/images/M/MV5BMTY5NTM2NjczMV5BMl5BanBnXkFtZTgwNTgxODI0MjE@._V1_.jpg"| Send-SlackMessage -Uri $url
+new-slackmessage -Channel "#clse-windows-deployments" -Attachments $att -IconUrl "https://m.media-amazon.com/images/M/MV5BMTY5NTM2NjczMV5BMl5BanBnXkFtZTgwNTgxODI0MjE@._V1_.jpg"| Send-SlackMessage -Uri $url
 
 

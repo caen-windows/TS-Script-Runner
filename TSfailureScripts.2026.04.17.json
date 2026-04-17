@@ -18,7 +18,7 @@
 		{
 			"computernamestring": 	"all",
 			"script":	"scripts\\Send-SlackErrorMessage.ps1",
-			"argumentlist":		"-SlackChannel '#clse-windows-deployments'"
+			"argumentlist":		""
 		},
         {
 			"computernamestring": 	"all",
