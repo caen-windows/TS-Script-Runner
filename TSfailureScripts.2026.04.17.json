@@ -1,0 +1,31 @@
+{
+	"jsonversion":		"2025.01.20",
+	"changeLog":	[
+						"2025.01.20 : Added SCCM Error Code descriptions for use in slack deployment error messages",
+						"2022.04.30 : Initial Version"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-SCCMErrorCodeDescription.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-EmailLog.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-SlackErrorMessage.ps1",
+			"argumentlist":		"-SlackChannel '#clse-windows-deployments'"
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Send-CustomTSErrorMessage.ps1",
+			"argumentlist":		""
+		}
+	]
+}
+
+	
