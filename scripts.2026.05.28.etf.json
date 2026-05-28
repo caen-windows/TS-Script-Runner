@@ -1,0 +1,33 @@
+{
+	"jsonversion":		"2026.05.28",
+	"changeLog":	[
+						"2026.05.28 : First version"
+					],
+	"entries":	[
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-ETFCompName.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Find-Disk.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-DiskInformation.ps1",
+			"argumentlist":		""
+		},
+		{
+			"computernamestring": 	"all",
+			"script":	"scripts\\Get-BIOS-Settings.ps1",
+			"argumentlist":		""
+		},
+        {
+			"computernamestring": 	"all",
+			"script":	"scripts\\Show-Win11ProductSummaryv2.ps1",
+			"argumentlist":		""
+		}
+	]
+}
