@@ -83,5 +83,6 @@ $tsenv.Value("CAENComputerName") = $ComputerName
 Set-Location x:
 remove-psdrive umroot
 if (-not($validComputer)){
-	return 1337 #Cancel the Task Sequence with this error code
+	Stop-Service -Name CcmExec
+	Get-Process -Name "TSManager" -ErrorAction SilentlyContinue | Stop-Process -Force
 }
