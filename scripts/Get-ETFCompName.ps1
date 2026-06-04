@@ -82,3 +82,6 @@ $tsenv.Value("CAENComputerName") = $ComputerName
 
 Set-Location x:
 remove-psdrive umroot
+if (-not($validComputer)){
+	return 1337 #Cancel the Task Sequence with this error code
+}
